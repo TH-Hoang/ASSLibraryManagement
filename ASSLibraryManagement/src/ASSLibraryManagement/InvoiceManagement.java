@@ -12,10 +12,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
-/**
- *
- * @author Admin
- */
+// code by Pham Trung Đức 
+
 public class InvoiceManagement {
         LocalDateTime time = LocalDateTime.now();
 
@@ -25,24 +23,22 @@ public class InvoiceManagement {
     String time1s = time.format(time1);
     String time2s = time.format(time2);
 
-    public void invoice (String name, Integer age, int somon)  {
+    public void invoice (String name, Integer age, int somon) throws IOException  {
         Scanner duc = new Scanner(System.in);
      
          
-        try {
+        
             File file = new File("hoa_don_" + time2s+ ".txt");
             if (file.createNewFile()) {
                 System.out.println("Hóa Đơn Đã Sắm Sàng !");
             } else {
                 System.out.println("------- Hóa Đơn Đã Tồn Tại !! --------");
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    
 
-        try {
+        
             BufferedWriter writer = new BufferedWriter(new FileWriter("hoa_don_" + time2s + ".txt"));
-            String line;
+         
 
             writer.write("------------- Hóa Đơn Restaurant VIP --------------\n");
             writer.write("Tên Khách Hàng : " + name + "\n");
@@ -62,39 +58,33 @@ public class InvoiceManagement {
              writer.write("\n ");
             writer.write("Cảm Ơn Quý Khách Đã Tin Tưởng Dịch Vụ Của Chúng Tôi !");
             writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+     
 
-        try {
+        
 
             BufferedReader reader = new BufferedReader(new FileReader("hoa_don_" + time2s + ".txt"));
 
-            String line;
-
+           
+                String line;
             while ((line = reader.readLine()) != null) {
                 System.out.println(line);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+      
     }
      
     
-    public void FindHoaDon(String ma){
+    public void FindHoaDon(String ma) throws IOException{
         
-        try {
+        
             BufferedReader reader1 = new BufferedReader (new FileReader("hoa_don_"+ma+".txt"));
              String line1;
              System.out.println("Thông Tin Hóa Đơn Mà Bạn Tìm Kiếm");
              while((line1=reader1.readLine())!=null){
-                 System.out.println(line1);
-             }
+                 System.out.println(line1);}
+             
             
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+      
 
-    }
+    
 }
+    }
