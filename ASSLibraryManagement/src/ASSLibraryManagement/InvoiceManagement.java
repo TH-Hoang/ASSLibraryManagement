@@ -3,11 +3,98 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package ASSLibraryManagement;
-
+import java.time.LocalDateTime;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
 /**
  *
  * @author Admin
  */
 public class InvoiceManagement {
+        LocalDateTime time = LocalDateTime.now();
+
+    DateTimeFormatter time1 = DateTimeFormatter.ofPattern("  dd/MM/yyyy  hh/mm/ss");
+    DateTimeFormatter time2 = DateTimeFormatter.ofPattern("ddMMyyyhhmmss");
+
+    String time1s = time.format(time1);
+    String time2s = time.format(time2);
+
+    public void invoice (String name, Integer age, int somon)  {
+        Scanner duc = new Scanner(System.in);
+     
+         
+        try {
+            File file = new File("hoa_don_" + time2s+ ".txt");
+            if (file.createNewFile()) {
+                System.out.println("Hóa Đơn Đã Sắm Sàng !");
+            } else {
+                System.out.println("------- Hóa Đơn Đã Tồn Tại !! --------");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("hoa_don_" + time2s + ".txt"));
+            String line;
+
+            writer.write("------------- Hóa Đơn Restaurant VIP --------------\n");
+            writer.write("Tên Khách Hàng : " + name + "\n");
+            writer.write("Thời Gian Sử Dụng Dịch Vụ " + time1s + "\n");
+            writer.write("Mã Hóa Hóa Đơn : "+time2s +"\n");
+
+            for (int i = 0; i < somon; i++) {
+
+                System.out.print("Nhập Tên Món Ăn muốn Thêm  ");
+                String namefood = duc.nextLine();
+                System.out.println("Tên món :");
+                writer.write(namefood+"\n");
+
+            }
+
+            writer.write("Tổng Tiền Thanh Toán :\n ");
+             writer.write("\n ");
+            writer.write("Cảm Ơn Quý Khách Đã Tin Tưởng Dịch Vụ Của Chúng Tôi !");
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+
+            BufferedReader reader = new BufferedReader(new FileReader("hoa_don_" + time2s + ".txt"));
+
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+     
     
+    public void FindHoaDon(String ma){
+        
+        try {
+            BufferedReader reader1 = new BufferedReader (new FileReader("hoa_don_"+ma+".txt"));
+             String line1;
+             System.out.println("Thông Tin Hóa Đơn Mà Bạn Tìm Kiếm");
+             while((line1=reader1.readLine())!=null){
+                 System.out.println(line1);
+             }
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 }
