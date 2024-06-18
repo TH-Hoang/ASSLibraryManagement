@@ -22,9 +22,31 @@ public class InvoiceManagement {
 
     String time1s = time.format(time1);
     String time2s = time.format(time2);
+    
+     public static boolean containsNumber(String str) {
+        for (char c : str.toCharArray()) {
+            if (Character.isDigit(c)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public void invoice (String name, Integer age, int somon) throws IOException  {
-        Scanner duc = new Scanner(System.in);
+          Scanner duc = new Scanner(System.in);
+          
+          if( InvoiceManagement.containsNumber(name)){
+              throw new IllegalArgumentException("Tên người vui lòng không  chứa ký tự  chứ số !");
+          }
+     
+          
+          
+          
+          
+         if(age<=0){
+             throw new IllegalArgumentException("age không được nhỏ hơn hoặc bằng 0 !");
+         }
+      
      
          
         
